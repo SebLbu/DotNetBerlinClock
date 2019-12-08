@@ -41,11 +41,7 @@ YYYY
 
 Scenario: Midnight 24:00
 When the time is "24:00:00"
-Then the clock should look like
+Then the user should get an error message
 """
-Y
-RRRR
-RRRR
-OOOOOOOOOOO
-OOOO
+24:00:00 is not a valid time. Expected format is HH:mm:ss and range must be between 00:00:00 and 23:59:59
 """
