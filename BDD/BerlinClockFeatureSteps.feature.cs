@@ -49,7 +49,7 @@ namespace BerlinClock.BDD
             if (((TechTalk.SpecFlow.FeatureContext.Current != null) 
                         && (TechTalk.SpecFlow.FeatureContext.Current.FeatureInfo.Title != "The Berlin Clock")))
             {
-                BerlinClock.BDD.TheBerlinClockFeature.FeatureSetup(null);
+                TheBerlinClockFeature.FeatureSetup(null);
             }
         }
         
@@ -132,7 +132,7 @@ this.ScenarioSetup(scenarioInfo);
 testRunner.When("the time is \"24:00:00\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
 #line 44
-testRunner.Then("the clock should look like", "Y\r\nRRRR\r\nRRRR\r\nOOOOOOOOOOO\r\nOOOO", ((TechTalk.SpecFlow.Table)(null)), "Then ");
+testRunner.Then("the user should get an error message", "24:00:00 is not a valid time. Expected format is HH:mm:ss and range must be between 00:00:00 and 23:59:59", ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             this.ScenarioCleanup();
         }

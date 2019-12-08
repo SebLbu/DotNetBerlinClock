@@ -1,28 +1,38 @@
-﻿using System;
+﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
+using System;
 using TechTalk.SpecFlow;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
-using System.Linq;
 
 namespace BerlinClock
 {
     [Binding]
     public class TheBerlinClockSteps
     {
-        private ITimeConverter berlinClock = new TimeConverter();
-        private String theTime;
-
+        private readonly ITimeConverter berlinClock = new TimeConverter();
+        private string theTime;
         
         [When(@"the time is ""(.*)""")]
         public void WhenTheTimeIs(string time)
         {
-            theTime = time;
+            this.theTime = time;
         }
         
         [Then(@"the clock should look like")]
         public void ThenTheClockShouldLookLike(string theExpectedBerlinClockOutput)
         {
-            Assert.AreEqual(berlinClock.convertTime(theTime), theExpectedBerlinClockOutput);
+            Assert.AreEqual(theExpectedBerlinClockOutput, this.berlinClock.ConvertTime(this.theTime));
         }
 
+        [Then(@"the user should get an error message")]
+        public void ThenTheUserShouldGetAnErrorMessage(string theExpectedBerlinClockOutput)
+        {
+            try
+            {
+                this.berlinClock.ConvertTime(this.theTime);
+            }
+            catch (ArgumentException e)
+            {
+                Assert.AreEqual(e.Message, theExpectedBerlinClockOutput);
+            }
+        }
     }
 }
