@@ -1,4 +1,6 @@
-﻿namespace BerlinClock.Classes
+﻿using System;
+
+namespace BerlinClock
 {
     /// <summary>
     /// The Clock interface.
@@ -8,9 +10,12 @@
         /// <summary>
         /// Display's the time in <see cref="IClock"/> format
         /// </summary>
+        /// <param name="time">
+        /// The time to read in <see cref="IClock"/>'s format
+        /// </param>
         /// <returns>
         /// A string representing the time as displayed on the clock
         /// </returns>
-        string ToString();
+        string ReadTime(DateTime time);
     }
 }

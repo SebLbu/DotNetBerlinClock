@@ -4,3 +4,5 @@
 
 /obj/Debug
 /packages/
+/bin/Debug
+/.vs

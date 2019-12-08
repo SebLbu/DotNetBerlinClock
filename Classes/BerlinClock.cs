@@ -1,8 +1,7 @@
 ﻿using System;
-using System.Globalization;
 using System.Text;
 
-namespace BerlinClock.Classes
+namespace BerlinClock
 {
     /// <summary>
     /// The clock implementation to read a given time in Berlin clock format
@@ -13,33 +12,13 @@ namespace BerlinClock.Classes
         private const char LightRed = 'R';
         private const char LightOff = 'O';
         
-        private readonly DateTime timeToConvert;
+        private DateTime timeToConvert;
 
-        /// <summary>
-        /// Initializes a new instance of the <see cref="BerlinClock"/> class.
-        /// </summary>
-        /// <param name="timeToDisplay">
-        /// The time to display in Berlin clock format.
-        /// </param>
-        /// <exception cref="ArgumentException">
-        /// Exception thrown if format is not HH:mm:ss and range must be between 00:00:00 and 23:59:59
-        /// </exception>
-        public BerlinClock(string timeToDisplay)
+        /// <inheritdoc />
+        public string ReadTime(DateTime time)
         {
-            if (!DateTime.TryParseExact(timeToDisplay, "HH:mm:ss", new CultureInfo("CH-DE"), DateTimeStyles.None, out this.timeToConvert))
-            {
-                throw new ArgumentException($"Argument {nameof(timeToDisplay)} with value {timeToDisplay} is not a valid time. Expected format is HH:mm:ss and range must be between 00:00:00 and 23:59:59");
-            }
-        }
-        
-        /// <summary>
-        /// Display's the time in <see cref="T:BerlinClock.Classes.BerlinClock" /> format
-        /// </summary>
-        /// <returns>
-        /// A string representing the time as displayed on a Berlin clock
-        /// </returns>
-        public override string ToString()
-        {
+            this.timeToConvert = time;
+
             var newLine = Environment.NewLine;
 
             return $@"{this.DisplaySeconds()}{newLine}{this.DisplayHours()}{newLine}{this.DisplayMinutes()}";
